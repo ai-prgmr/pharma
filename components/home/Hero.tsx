@@ -104,11 +104,10 @@ export default function Hero() {
                 {HERO_SLIDES.map((slide, idx) => (
                   <div
                     key={slide.id}
-                    className={`absolute inset-0 p-4 transition-all duration-700 ease-in-out flex items-center justify-center ${
-                      idx === currentSlide
+                    className={`absolute inset-0 p-4 transition-all duration-700 ease-in-out flex items-center justify-center ${idx === currentSlide
                         ? "opacity-100 scale-100 z-10"
                         : "opacity-0 scale-95 z-0 pointer-events-none"
-                    }`}
+                      }`}
                   >
                     <Image
                       src={slide.image}
@@ -168,22 +167,19 @@ export default function Hero() {
                   <button
                     key={slide.id}
                     onClick={() => setCurrentSlide(idx)}
-                    className={`flex-1 py-1.5 px-2 rounded-lg text-left border transition-all duration-300 ${
-                      idx === currentSlide
+                    className={`flex-1 py-1.5 px-2 rounded-lg text-left border transition-all duration-300 ${idx === currentSlide
                         ? "bg-white border-teal shadow-2xs"
                         : "bg-white/50 border-transparent hover:bg-white"
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center gap-1.5">
                       <span
-                        className={`w-2 h-2 rounded-full transition-all ${
-                          idx === currentSlide ? "bg-teal scale-110" : "bg-gray-300"
-                        }`}
+                        className={`w-2 h-2 rounded-full transition-all ${idx === currentSlide ? "bg-teal scale-110" : "bg-gray-300"
+                          }`}
                       />
                       <span
-                        className={`text-[10px] font-bold tracking-tight truncate ${
-                          idx === currentSlide ? "text-navy" : "text-muted-text"
-                        }`}
+                        className={`text-[10px] font-bold tracking-tight truncate ${idx === currentSlide ? "text-navy" : "text-muted-text"
+                          }`}
                       >
                         {slide.tag}
                       </span>
