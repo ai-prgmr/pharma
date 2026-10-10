@@ -10,7 +10,7 @@ const HERO_SLIDES = [
     title: "Tetra Pak Aseptic Liquid Packaging Line",
     subtitle: "Grade A Aseptic Processing & Sterile Filling Platform",
     tag: "Aseptic Line #1",
-    image: "/images/hero/hero_machinery_1.png",
+    image: "/pharma/images/hero/hero_machinery_1.png",
     specs: "High-Speed Liquid Packaging • Sterile Barrier Protection",
   },
   {
@@ -18,7 +18,7 @@ const HERO_SLIDES = [
     title: "High-Capacity Industrial Automated System",
     subtitle: "24/7 High-Volume Commercial Production Line",
     tag: "Commercial Unit #2",
-    image: "/images/hero/hero_machinery_2.png",
+    image: "/pharma/images/hero/hero_machinery_2.png",
     specs: "WHO-GMP Certified • Continuous Quality Control",
   },
   {
@@ -26,7 +26,7 @@ const HERO_SLIDES = [
     title: "End-to-End Aseptic Processing & Tank Workflow",
     subtitle: "Complete Formulation to Final Aseptic Liquid Seal",
     tag: "Processing Flow",
-    image: "/images/hero/hero_machinery_3.png",
+    image: "/pharma/images/hero/hero_machinery_3.png",
     specs: "Multi-Stage Sterilization • Zero-Contamination Standard",
   },
 ];

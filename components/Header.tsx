@@ -26,7 +26,7 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-primary rounded-md py-1 px-1">
           <div className="relative flex items-center h-12 w-28">
             <Image
-              src="/ayka-pharma-logo.png"
+              src="/pharma/ayka-pharma-logo.png"
               alt="Ayka Pharma Logo"
               width={120}
               height={40}
