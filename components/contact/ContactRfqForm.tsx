@@ -9,8 +9,9 @@ export default function ContactRfqForm() {
     email: "",
     phone: "",
     inquiryNature: "",
-    volume: "high",
-    packaging: "bfs-ampoules",
+    volume: "medium",
+    packaging: "ors-200ml",
+    flavorPreference: "all-flavors",
     projectNotes: "",
     ndaCheck: true,
   });
@@ -59,13 +60,13 @@ export default function ContactRfqForm() {
           }),
         });
       } else {
-        // Fallback simulate API processing for static export
+        // Static export API simulation
         await new Promise((resolve) => setTimeout(resolve, 800));
       }
 
       setStatus("success");
       setResponseMessage(
-        "Request submitted successfully. The Ayka Regulatory Affairs Liaison will review your specifications within 24 hours."
+        "Request submitted successfully. The Ayka Pharma Commercial & Quality Operations team will review your specifications within 24 hours."
       );
       // Reset form
       setFormData({
@@ -74,8 +75,9 @@ export default function ContactRfqForm() {
         email: "",
         phone: "",
         inquiryNature: "",
-        volume: "high",
-        packaging: "bfs-ampoules",
+        volume: "medium",
+        packaging: "ors-200ml",
+        flavorPreference: "all-flavors",
         projectNotes: "",
         ndaCheck: true,
       });
@@ -83,22 +85,22 @@ export default function ContactRfqForm() {
     } catch (err) {
       console.error("Form submission error:", err);
       setStatus("error");
-      setResponseMessage("Network error occurred. Please try again or email info@aykapharma.com.");
+      setResponseMessage("Network error occurred. Please try again or email aykapharma@aykapharma.com directly.");
     }
   };
 
   return (
-    <section className="bg-white p-6 md:p-8 rounded-2xl border border-border-subtle shadow-xs space-y-6" id="rfq-form">
-      <div className="border-b border-border-subtle pb-4">
-        <div className="flex items-center gap-2 text-teal font-semibold text-xs tracking-wider uppercase">
+    <section className="bg-white p-6 md:p-10 rounded-3xl border border-border-subtle shadow-clinical space-y-6" id="rfq-form">
+      <div className="border-b border-border-subtle pb-5">
+        <div className="flex items-center gap-2 text-teal font-extrabold text-xs tracking-wider uppercase">
           <span className="material-symbols-outlined text-base">lock</span>
-          <span>Controlled Technical Disclosure Channel</span>
+          <span>Controlled Technical &amp; Commercial Disclosure Channel</span>
         </div>
-        <h2 className="text-2xl font-bold text-navy mt-1">
+        <h2 className="text-2xl md:text-3xl font-extrabold text-navy mt-1 font-heading">
           Technical RFQ &amp; Batch Commissioning Request
         </h2>
         <p className="text-sm text-muted-text mt-1 leading-relaxed">
-          Complete the protocol parameters below. Your specification will be routed directly to our Head of Quality Assurance and BFS Technical Operations.
+          Complete the parameters below to request MOQ details, private label pricing, or custom formulation runs. Routed directly to our Commercial Liaison &amp; QA Desk.
         </p>
       </div>
 
@@ -126,32 +128,32 @@ export default function ContactRfqForm() {
         {/* Row 1: Company & Authorized Rep */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-navy" htmlFor="companyName">
-              Organization / Pharmaceutical Company Name <span className="text-error">*</span>
+            <label className="text-xs font-bold text-navy" htmlFor="companyName">
+              Organization / Brand Name <span className="text-error">*</span>
             </label>
             <input
               type="text"
               id="companyName"
               value={formData.companyName}
               onChange={handleChange}
-              placeholder="e.g. Novartis Healthcare / Cipla Ltd."
+              placeholder="e.g. MedLife Pharmaceuticals / Apex Healthcare"
               required
-              className="w-full bg-white border border-border-subtle rounded-lg px-3.5 py-2.5 text-sm text-body-text placeholder:text-muted-text transition-colors"
+              className="w-full bg-light-bg/50 border border-border-subtle rounded-xl px-4 py-2.5 text-sm text-body-text placeholder:text-muted-text transition-colors focus:bg-white"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-navy" htmlFor="repName">
-              Authorized Representative &amp; Designation <span className="text-error">*</span>
+            <label className="text-xs font-bold text-navy" htmlFor="repName">
+              Authorized Contact &amp; Designation <span className="text-error">*</span>
             </label>
             <input
               type="text"
               id="repName"
               value={formData.repName}
               onChange={handleChange}
-              placeholder="e.g. Dr. Rajesh Sharma, VP Quality / QP"
+              placeholder="e.g. Dr. Rajesh Sharma, Head of Sourcing"
               required
-              className="w-full bg-white border border-border-subtle rounded-lg px-3.5 py-2.5 text-sm text-body-text placeholder:text-muted-text transition-colors"
+              className="w-full bg-light-bg/50 border border-border-subtle rounded-xl px-4 py-2.5 text-sm text-body-text placeholder:text-muted-text transition-colors focus:bg-white"
             />
           </div>
         </div>
@@ -159,23 +161,23 @@ export default function ContactRfqForm() {
         {/* Row 2: Corporate Email & Phone / WhatsApp */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-navy" htmlFor="email">
-              Corporate / Institutional Email Address <span className="text-error">*</span>
+            <label className="text-xs font-bold text-navy" htmlFor="email">
+              Corporate Email Address <span className="text-error">*</span>
             </label>
             <input
               type="email"
               id="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="name@company.pharma"
+              placeholder="sourcing@company.com"
               required
-              className="w-full bg-white border border-border-subtle rounded-lg px-3.5 py-2.5 text-sm text-body-text placeholder:text-muted-text transition-colors"
+              className="w-full bg-light-bg/50 border border-border-subtle rounded-xl px-4 py-2.5 text-sm text-body-text placeholder:text-muted-text transition-colors focus:bg-white"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-navy" htmlFor="phone">
-              Direct Phone / WhatsApp (with Country Code) <span className="text-error">*</span>
+            <label className="text-xs font-bold text-navy" htmlFor="phone">
+              Direct Phone / WhatsApp <span className="text-error">*</span>
             </label>
             <input
               type="tel"
@@ -184,91 +186,109 @@ export default function ContactRfqForm() {
               onChange={handleChange}
               placeholder="+91 98765 43210"
               required
-              className="w-full bg-white border border-border-subtle rounded-lg px-3.5 py-2.5 text-sm text-body-text placeholder:text-muted-text transition-colors"
+              className="w-full bg-light-bg/50 border border-border-subtle rounded-xl px-4 py-2.5 text-sm text-body-text placeholder:text-muted-text transition-colors focus:bg-white"
             />
           </div>
         </div>
 
         {/* Row 3: Nature of Inquiry Selector */}
         <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-navy" htmlFor="inquiryNature">
-            Nature of Technical Inquiry <span className="text-error">*</span>
+          <label className="text-xs font-bold text-navy" htmlFor="inquiryNature">
+            Nature of Technical / Commercial Inquiry <span className="text-error">*</span>
           </label>
           <select
             id="inquiryNature"
             value={formData.inquiryNature}
             onChange={handleChange}
             required
-            className="w-full bg-white border border-border-subtle rounded-lg px-3.5 py-2.5 text-sm text-body-text transition-colors"
+            className="w-full bg-light-bg/50 border border-border-subtle rounded-xl px-4 py-2.5 text-sm text-body-text transition-colors focus:bg-white cursor-pointer"
           >
             <option value="">Select Primary Objective</option>
-            <option value="bfs-manufacturing">Contract Manufacturing / BFS Packaging (Blow-Fill-Seal)</option>
-            <option value="electrolyte-sourcing">Ready-to-Drink Electrolyte / Prolyte ORS Sourcing</option>
-            <option value="audit-scheduling">WHO-GMP / ISO 9001:2015 Facility Audit Scheduling</option>
-            <option value="dossier-testing">Formulation &amp; Analytical Testing Dossier / CTD DMF</option>
-            <option value="commercial-partnership">Other Commercial / Institutional Supply Partnership</option>
+            <option value="co-packing">Contract Manufacturing &amp; Co-Packing (Low MOQ)</option>
+            <option value="aykalute-ors">Ready-to-Drink AYKALUTE ORS Sourcing (8 Flavors)</option>
+            <option value="private-label">Private Label Brand Packaging (125ml / 200ml)</option>
+            <option value="custom-formulation">Custom Liquid Formulation Development</option>
+            <option value="export-supply">Global Export Supply &amp; Regulatory Dossier Filings</option>
+            <option value="facility-audit">WHO-GMP &amp; ISO 9001:2015 Plant Audit Scheduling</option>
           </select>
         </div>
 
         {/* Row 4: Volume & Packaging Selectors */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-navy" htmlFor="volume">
-              Target Batch / Monthly Volume
+            <label className="text-xs font-bold text-navy" htmlFor="volume">
+              Estimated Monthly Volume
             </label>
             <select
               id="volume"
               value={formData.volume}
               onChange={handleChange}
-              className="w-full bg-white border border-border-subtle rounded-lg px-3.5 py-2.5 text-sm text-body-text transition-colors"
+              className="w-full bg-light-bg/50 border border-border-subtle rounded-xl px-4 py-2.5 text-sm text-body-text transition-colors focus:bg-white cursor-pointer"
             >
-              <option value="pilot">Pilot Trial / R&amp;D Test Batches (10k - 50k units)</option>
-              <option value="medium">Commercial Tier: 100,000 - 500,000 units/mo</option>
-              <option value="high">Commercial Scale: 1,000,000+ units/month</option>
-              <option value="custom">Custom Regulatory Tender Quantity</option>
+              <option value="low">Trial Batch: 25,000 - 50,000 Pouches (Low MOQ)</option>
+              <option value="medium">Commercial Tier: 100,000 - 500,000 Pouches/mo</option>
+              <option value="high">Mass Scale: 1,000,000 - 5,000,000 Pouches/mo</option>
+              <option value="institutional">Institutional / Government Tender Scale</option>
             </select>
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-navy" htmlFor="packaging">
-              Dosage &amp; Packaging Architecture
+            <label className="text-xs font-bold text-navy" htmlFor="packaging">
+              Pouch Volume Format
             </label>
             <select
               id="packaging"
               value={formData.packaging}
               onChange={handleChange}
-              className="w-full bg-white border border-border-subtle rounded-lg px-3.5 py-2.5 text-sm text-body-text transition-colors"
+              className="w-full bg-light-bg/50 border border-border-subtle rounded-xl px-4 py-2.5 text-sm text-body-text transition-colors focus:bg-white cursor-pointer"
             >
-              <option value="bfs-ampoules">BFS Sterile Liquid Ampoules (0.5ml - 20ml)</option>
-              <option value="bfs-vials">BFS Vials / Large Volume Parenterals (50ml - 500ml)</option>
-              <option value="oral-bottles">Aseptic High-Speed Bottle Filling (200ml - 1000ml)</option>
-              <option value="sachets">Multi-barrier Sachets &amp; Dry Suspensions</option>
-              <option value="multidose">Preservative-Free Multi-dose Containers</option>
+              <option value="ors-200ml">200 ml Aseptic 7-Layer Barrier Pouch</option>
+              <option value="ors-125ml">125 ml Aseptic 7-Layer Barrier Pouch</option>
+              <option value="both-volumes">Combined 125ml &amp; 200ml Assortment</option>
+              <option value="custom-volume">Custom Volume Packaging</option>
+            </select>
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="text-xs font-bold text-navy" htmlFor="flavorPreference">
+              Flavor Preference
+            </label>
+            <select
+              id="flavorPreference"
+              value={formData.flavorPreference}
+              onChange={handleChange}
+              className="w-full bg-light-bg/50 border border-border-subtle rounded-xl px-4 py-2.5 text-sm text-body-text transition-colors focus:bg-white cursor-pointer"
+            >
+              <option value="all-flavors">Assorted 8 Flavors Portfolio</option>
+              <option value="apple-orange">Apple &amp; Orange (Standard)</option>
+              <option value="lemon-guava">Lemon &amp; Chilli Guava</option>
+              <option value="exotic-berries">Black Currant &amp; Litchi</option>
+              <option value="custom-flavors">Custom Proprietary Flavor Formulation</option>
             </select>
           </div>
         </div>
 
         {/* Technical Specification & Requirements Details */}
         <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-navy" htmlFor="projectNotes">
-            Technical Details / Formulation Specifications / Special Storage
+          <label className="text-xs font-bold text-navy" htmlFor="projectNotes">
+            Technical Details / Artwork Requirements / Target Timelines
           </label>
           <textarea
             id="projectNotes"
             rows={3}
             value={formData.projectNotes}
             onChange={handleChange}
-            placeholder="Specify API, target pH, viscosity, sterility assurance level (SAL 10⁻⁶), stability profiles, or cGMP dossier requirements..."
-            className="w-full bg-white border border-border-subtle rounded-lg px-3.5 py-2.5 text-sm text-body-text placeholder:text-muted-text transition-colors"
+            placeholder="Provide target launch dates, private label artwork status, specific market registration requirements, or custom osmolarity targets..."
+            className="w-full bg-light-bg/50 border border-border-subtle rounded-xl px-4 py-2.5 text-sm text-body-text placeholder:text-muted-text transition-colors focus:bg-white"
           />
         </div>
 
         {/* File Attachment Dropzone */}
         <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-navy">
-            Tender Documents / RFP / Analytical Specs (Optional)
+          <label className="text-xs font-bold text-navy">
+            Specifications / RFP / Brand Artwork (Optional)
           </label>
-          <div className="border-2 border-dashed border-border-subtle hover:border-teal rounded-xl p-5 text-center bg-light-bg transition-colors cursor-pointer group">
+          <div className="border-2 border-dashed border-border-subtle hover:border-teal rounded-2xl p-5 text-center bg-light-bg/50 transition-colors cursor-pointer group">
             <input
               type="file"
               id="file-upload"
@@ -280,28 +300,28 @@ export default function ContactRfqForm() {
                 cloud_upload
               </span>
               <span className="text-xs font-bold text-navy mt-1">
-                {fileName ? `Attached: ${fileName}` : "Upload Specifications or Batch Sheet"}
+                {fileName ? `Attached: ${fileName}` : "Upload Specifications, RFP, or Artwork Draft"}
               </span>
               <span className="text-[11px] text-muted-text mt-0.5">
-                PDF, DOCX, or XLSX up to 25MB (Encrypted storage)
+                PDF, DOCX, PNG, or ZIP up to 25MB (Encrypted transfer)
               </span>
             </label>
           </div>
         </div>
 
         {/* Mutual Non-Disclosure Agreement (NDA) Checkbox */}
-        <div className="p-3.5 bg-light-bg border border-border-subtle rounded-xl flex items-start gap-3">
+        <div className="p-4 bg-light-bg/80 border border-border-subtle rounded-2xl flex items-start gap-3">
           <input
             type="checkbox"
             id="ndaCheck"
             checked={formData.ndaCheck}
             onChange={handleChange}
-            className="mt-1 h-4 w-4 rounded border-border-subtle text-primary focus:ring-primary"
+            className="mt-1 h-4 w-4 rounded border-border-subtle text-primary focus:ring-primary cursor-pointer"
           />
           <label htmlFor="ndaCheck" className="text-xs text-body-text select-none cursor-pointer">
-            <strong className="text-navy font-semibold">Execute Mutual Non-Disclosure Agreement (CDA/NDA)</strong>
+            <strong className="text-navy font-bold">Execute Mutual Non-Disclosure Agreement (CDA/NDA)</strong>
             <span className="block text-muted-text mt-0.5">
-              Transmit mutual confidentiality protocol prior to sharing proprietary formulations, master batch records (MBR), or master analytical test procedures.
+              Transmit formal confidentiality protocol prior to sharing proprietary formulations, brand identity assets, or production forecasts.
             </span>
           </label>
         </div>
@@ -311,7 +331,7 @@ export default function ContactRfqForm() {
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="btn-primary w-full py-3.5 text-base flex items-center justify-center gap-2 shadow-xs disabled:opacity-60"
+            className="btn-primary w-full py-4 text-sm font-bold flex items-center justify-center gap-2 shadow-clinical disabled:opacity-60 cursor-pointer"
           >
             {status === "submitting" ? (
               <>
@@ -319,18 +339,18 @@ export default function ContactRfqForm() {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                 </svg>
-                <span>Submitting to Regulatory Liaison...</span>
+                <span>Submitting to Ayka Commercial QA Desk...</span>
               </>
             ) : (
               <>
                 <span className="material-symbols-outlined text-xl">verified</span>
-                <span>Submit Technical Request &amp; RFQ</span>
+                <span>Submit Technical RFQ &amp; Commission Request</span>
               </>
             )}
           </button>
           <div className="flex items-center justify-center gap-2 mt-3 text-xs text-muted-text">
             <span className="material-symbols-outlined text-sm text-success">lock</span>
-            <span>Encrypted submission • Direct QA routing • 24hr priority review SLA</span>
+            <span>Direct Commercial Liaison • WHO-GMP Certified Operations • 24hr response SLA</span>
           </div>
         </div>
       </form>

@@ -6,50 +6,92 @@ import Image from "next/image";
 
 const PRODUCTS = [
   {
-    id: "aam-panna",
-    name: "Aam Panna Flavour",
-    badge: "Refreshing Raw Mango",
-    image: "/pharma/images/products/prolyte-aam-panna.png",
-    color: "#16a34a",
-    bgColor: "rgba(22, 163, 74, 0.08)",
-    borderColor: "rgba(22, 163, 74, 0.25)",
-  },
-  {
     id: "apple",
-    name: "Apple Flavour",
+    name: "Apple",
     badge: "Crisp Red Apple",
     image: "/pharma/images/products/prolyte-apple.png",
     color: "#dc2626",
-    bgColor: "rgba(220, 38, 38, 0.08)",
-    borderColor: "rgba(220, 38, 38, 0.25)",
+    bgColor: "rgba(220, 38, 38, 0.06)",
+    borderColor: "rgba(220, 38, 38, 0.2)",
+    pillBg: "bg-red-50 text-red-700 border-red-200",
   },
   {
-    id: "jeera",
-    name: "Jeera Flavour",
-    badge: "Traditional Cumin Hydration",
-    image: "/pharma/images/products/prolyte-jeera.png",
-    color: "#d97706",
-    bgColor: "rgba(217, 119, 6, 0.08)",
-    borderColor: "rgba(217, 119, 6, 0.25)",
-  },
-  {
-    id: "blackcurrant",
-    name: "Blackcurrant Flavour",
-    badge: "Rich Berry Blend",
-    image: "/pharma/images/products/prolyte-blackcurrant.png",
-    color: "#9333ea",
-    bgColor: "rgba(147, 51, 234, 0.08)",
-    borderColor: "rgba(147, 51, 234, 0.25)",
+    id: "orange",
+    name: "Orange",
+    badge: "Zesty Citrus",
+    image: "/pharma/images/products/prolyte-lemon.png",
+    color: "#ea580c",
+    bgColor: "rgba(234, 88, 12, 0.06)",
+    borderColor: "rgba(234, 88, 12, 0.2)",
+    pillBg: "bg-orange-50 text-orange-700 border-orange-200",
   },
   {
     id: "lemon",
-    name: "Lemon Flavour",
-    badge: "Zesty Citrus Refresh",
+    name: "Lemon",
+    badge: "Refreshing Citrus",
     image: "/pharma/images/products/prolyte-lemon.png",
     color: "#ca8a04",
-    bgColor: "rgba(202, 138, 4, 0.08)",
-    borderColor: "rgba(202, 138, 4, 0.25)",
+    bgColor: "rgba(202, 138, 4, 0.06)",
+    borderColor: "rgba(202, 138, 4, 0.2)",
+    pillBg: "bg-amber-50 text-amber-700 border-amber-200",
   },
+  {
+    id: "chilli-guava",
+    name: "Chilli Guava",
+    badge: "Spiced Tropical",
+    image: "/pharma/images/products/prolyte-aam-panna.png",
+    color: "#16a34a",
+    bgColor: "rgba(22, 163, 74, 0.06)",
+    borderColor: "rgba(22, 163, 74, 0.2)",
+    pillBg: "bg-emerald-50 text-emerald-700 border-emerald-200",
+  },
+  {
+    id: "pineapple",
+    name: "Pineapple",
+    badge: "Sweet Tropical",
+    image: "/pharma/images/products/prolyte-jeera.png",
+    color: "#d97706",
+    bgColor: "rgba(217, 119, 6, 0.06)",
+    borderColor: "rgba(217, 119, 6, 0.2)",
+    pillBg: "bg-yellow-50 text-yellow-700 border-yellow-200",
+  },
+  {
+    id: "blackcurrant",
+    name: "Black Currant",
+    badge: "Rich Berry Blend",
+    image: "/pharma/images/products/prolyte-blackcurrant.png",
+    color: "#9333ea",
+    bgColor: "rgba(147, 51, 234, 0.06)",
+    borderColor: "rgba(147, 51, 234, 0.2)",
+    pillBg: "bg-purple-50 text-purple-700 border-purple-200",
+  },
+  {
+    id: "litchi",
+    name: "Litchi",
+    badge: "Delicate Exotic",
+    image: "/pharma/images/products/prolyte-blackcurrant.png",
+    color: "#db2777",
+    bgColor: "rgba(219, 39, 119, 0.06)",
+    borderColor: "rgba(219, 39, 119, 0.2)",
+    pillBg: "bg-pink-50 text-pink-700 border-pink-200",
+  },
+  {
+    id: "mix-fruit",
+    name: "Mix Fruit",
+    badge: "Multi-Fruit Fusion",
+    image: "/pharma/images/products/prolyte-apple.png",
+    color: "#2563eb",
+    bgColor: "rgba(37, 99, 235, 0.06)",
+    borderColor: "rgba(37, 99, 235, 0.2)",
+    pillBg: "bg-blue-50 text-blue-700 border-blue-200",
+  },
+];
+
+const TECHNICAL_FORMULA = [
+  { component: "Sodium Chloride (NaCl)", concentration: "75 MMOL/L", weight: "2.6 g/l", purpose: "Sodium source" },
+  { component: "Tri-Sodium Citrate Dihydrate", concentration: "10 MMOL/L", weight: "2.9 g/l", purpose: "Alkalizing agent" },
+  { component: "Potassium Chloride (KCl)", concentration: "20 MMOL/L", weight: "1.5 g/l", purpose: "Potassium source" },
+  { component: "Anhydrous Glucose", concentration: "75 MMOL/L", weight: "13.5 g/l", purpose: "Co-transport mechanism" },
 ];
 
 export default function ProductSpotlight() {
@@ -61,7 +103,7 @@ export default function ProductSpotlight() {
 
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % PRODUCTS.length);
-    }, 1000);
+    }, 4500);
 
     return () => clearInterval(timer);
   }, [isPaused]);
@@ -69,14 +111,32 @@ export default function ProductSpotlight() {
   const currentProduct = PRODUCTS[currentIndex];
 
   return (
-    <section className="py-12 md:py-16 bg-light-bg border-y border-border-subtle overflow-hidden">
-      <div className="ayka-container">
-        <div className="bg-white rounded-2xl border border-border-subtle p-5 md:p-8 shadow-xs">
-          <div className="flex flex-col lg:flex-row items-stretch gap-6 lg:gap-10">
-            {/* Product Image Stage */}
+    <section className="py-14 md:py-20 bg-light-bg/50 border-y border-border-subtle overflow-hidden" id="products">
+      <div className="ayka-container space-y-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <span className="text-xs font-bold text-teal tracking-wider uppercase">
+              FLAGSHIP PRODUCT LINE &bull; W.H.O. RECOMMENDED FORMULA
+            </span>
+            <h2 className="text-2xl md:text-4xl font-extrabold text-navy tracking-tight mt-1">
+              AYKALUTE ORS Liquid Solution
+            </h2>
+          </div>
+          <Link
+            href="/products"
+            className="inline-flex items-center gap-1.5 text-xs md:text-sm font-bold text-primary hover:text-navy transition-colors cursor-pointer"
+          >
+            <span>View Full Product Portfolio &amp; Flavors</span>
+            <span className="material-symbols-outlined text-base">arrow_forward</span>
+          </Link>
+        </div>
+
+        <div className="bg-white rounded-3xl border border-border-subtle p-6 md:p-10 shadow-clinical">
+          <div className="flex flex-col lg:flex-row items-stretch gap-10 lg:gap-12">
+            {/* Interactive Product Showcase Box */}
             <div className="w-full lg:w-5/12 flex flex-col justify-between">
               <div
-                className="relative rounded-2xl border transition-all duration-500 p-4 md:p-5 flex flex-col items-center group cursor-pointer shadow-xs"
+                className="relative rounded-2xl border transition-all duration-500 p-5 flex flex-col items-center group cursor-pointer shadow-2xs"
                 style={{
                   backgroundColor: currentProduct.bgColor,
                   borderColor: currentProduct.borderColor,
@@ -85,33 +145,37 @@ export default function ProductSpotlight() {
                 onMouseLeave={() => setIsPaused(false)}
               >
                 {/* Header Tag */}
-                <div className="w-full flex items-center justify-between mb-3">
-                  <span className="px-2.5 py-1 bg-white/90 backdrop-blur-xs rounded text-[10px] font-extrabold text-navy border border-border-subtle uppercase tracking-wider shadow-2xs">
-                    READY TO DRINK ELECTROLYTE
+                <div className="w-full flex items-center justify-between mb-4">
+                  <span className="px-3 py-1 bg-white/95 backdrop-blur-xs rounded-full text-[10px] font-extrabold text-navy border border-border-subtle uppercase tracking-wider shadow-2xs">
+                    READY-TO-DRINK &bull; 125ML &amp; 200ML
+                  </span>
+                  <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-white text-navy border border-border-subtle">
+                    Flavor {currentIndex + 1} of {PRODUCTS.length}
                   </span>
                 </div>
 
-                {/* Main Image Showcase - Maximized height, reduced gutters */}
-                <div className="relative w-full h-[360px] sm:h-[400px] rounded-xl overflow-hidden flex items-center justify-center bg-white border border-border-subtle/60 shadow-inner">
-                  {/* Subtle flavor ambient backdrop glow inside frame */}
+                {/* Main Product Image Stage */}
+                <div className="relative w-full h-[330px] sm:h-[370px] rounded-2xl overflow-hidden flex items-center justify-center bg-white border border-border-subtle/70 shadow-inner">
+                  {/* Flavor-Responsive Ambient Glow */}
                   <div
-                    className="absolute inset-0 opacity-20 transition-all duration-500 blur-xl scale-125"
+                    className="absolute inset-0 opacity-25 transition-all duration-500 blur-2xl scale-125"
                     style={{ backgroundColor: currentProduct.color }}
                   />
 
                   {PRODUCTS.map((product, idx) => (
                     <div
                       key={product.id}
-                      className={`absolute inset-0 p-1 sm:p-2 transition-all duration-500 ease-in-out flex items-center justify-center ${idx === currentIndex
-                        ? "opacity-100 scale-100 z-10"
-                        : "opacity-0 scale-95 z-0 pointer-events-none"
-                        }`}
+                      className={`absolute inset-0 p-3 transition-all duration-500 ease-in-out flex items-center justify-center ${
+                        idx === currentIndex
+                          ? "opacity-100 scale-100 z-10"
+                          : "opacity-0 scale-95 z-0 pointer-events-none"
+                      }`}
                     >
                       <Image
                         src={product.image}
-                        alt={`Prolyte ORS - ${product.name}`}
+                        alt={`Aykalute ORS - ${product.name} Flavor`}
                         fill
-                        className="object-contain p-1"
+                        className="object-contain p-2 drop-shadow-sm"
                         unoptimized
                         priority={idx === 0}
                       />
@@ -119,119 +183,109 @@ export default function ProductSpotlight() {
                   ))}
                 </div>
 
-                {/* Active Flavor Title & Badge */}
-                <div className="mt-3 text-center w-full">
-                  <div className="text-base font-extrabold text-navy">
-                    Prolyte ORS Packaging
+                {/* Active Flavor Title & Compliance Badge */}
+                <div className="mt-4 text-center w-full">
+                  <div className="text-lg font-extrabold text-navy font-heading">
+                    AYKALUTE ORS &bull; {currentProduct.name}
                   </div>
                   <div
-                    className="text-xs font-bold mt-1 inline-block px-3 py-1 rounded-full border border-white/60 bg-white/80 shadow-2xs transition-all duration-300"
+                    className="text-xs font-bold mt-1.5 inline-block px-3.5 py-1 rounded-full border border-white/80 bg-white shadow-2xs transition-all duration-300"
                     style={{ color: currentProduct.color }}
                   >
-                    {currentProduct.name} &bull; {currentProduct.badge}
+                    {currentProduct.badge} Flavor &bull; High Paediatric Compliance
                   </div>
                 </div>
 
-                {/* Thumbnail Strip to eliminate empty whitespace */}
-                <div className="w-full grid grid-cols-5 gap-1.5 mt-3 pt-3 border-t border-navy/10">
+                {/* 8-Flavor Interactive Selector Strip */}
+                <div className="w-full grid grid-cols-4 gap-1.5 mt-4 pt-3 border-t border-border-subtle">
                   {PRODUCTS.map((product, idx) => (
                     <button
                       key={product.id}
                       onClick={() => setCurrentIndex(idx)}
-                      title={product.name}
-                      aria-label={`Select ${product.name}`}
-                      className={`relative aspect-[3/4] rounded-lg overflow-hidden border transition-all duration-200 bg-white p-0.5 ${idx === currentIndex
-                        ? "ring-2 ring-teal border-transparent scale-105 shadow-xs"
-                        : "border-border-subtle opacity-70 hover:opacity-100 hover:border-teal/50"
-                        }`}
+                      title={`${product.name} Flavor`}
+                      aria-label={`Select ${product.name} flavor`}
+                      className={`py-1.5 px-1 rounded-lg text-center text-[10px] font-bold border transition-all cursor-pointer ${
+                        idx === currentIndex
+                          ? "bg-navy text-white border-navy scale-105 shadow-2xs font-extrabold"
+                          : "bg-white text-body-text border-border-subtle hover:border-teal"
+                      }`}
                     >
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        fill
-                        className="object-contain"
-                        unoptimized
-                      />
+                      {product.name}
                     </button>
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* Product Specifications & Narrative */}
-            <div className="w-full lg:w-7/12 flex flex-col justify-between space-y-4">
+            {/* Product Specifications & Technical Formula */}
+            <div className="w-full lg:w-7/12 flex flex-col justify-between space-y-5">
               <div className="space-y-4">
-                <div className="inline-flex items-center space-x-2 px-3 py-1 bg-[#ECFDF5] text-success rounded-full text-xs font-bold uppercase tracking-wider">
+                <div className="inline-flex items-center space-x-2 px-3 py-1 bg-[#ECFDF5] text-success rounded-full text-xs font-bold uppercase tracking-wider border border-success/20">
                   <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
-                  <span>COMMERCIAL CONTRACT RUN READY &bull; 5 FLAVORS AVAILABLE</span>
+                  <span>WHO/UNICEF LOW OSMOLARITY STANDARD &bull; 75 MMOL/L</span>
                 </div>
 
-                <h2 className="text-2xl md:text-3xl font-extrabold text-navy tracking-tight">
-                  Featured Product: Prolyte ORS Formulations
-                </h2>
+                <h3 className="text-2xl md:text-3xl font-extrabold text-navy tracking-tight leading-tight">
+                  Scientifically Balanced Liquid Rehydration
+                </h3>
 
-                <p className="text-sm md:text-base text-body-text leading-relaxed">
-                  Engineered with high thermodynamic barrier laminates for delicate electrolyte balance stability. Ayka Pharma packages oral rehydration salts with sterile precision across 5 distinct ready-to-drink formulation flavors, preserving osmotic stability across diverse storage temperatures.
+                <p className="text-sm text-body-text leading-relaxed">
+                  Ayka Pharma packages ready-to-drink Liquid ORS formulated precisely according to WHO guidelines. Ready-to-drink convenience eliminates mixing errors and ensures immediate bioavailability for emergency care, hospital hydration, and large-scale distribution programs.
                 </p>
 
-                {/* Interactive Variant Selection Bar */}
-                <div className="p-3.5 bg-light-bg rounded-xl border border-border-subtle space-y-2">
-                  <div className="flex items-center justify-between text-xs font-bold text-muted-text uppercase tracking-wider">
-                    <span>Available Ready-To-Drink Flavors:</span>
+                {/* Packaging Integrity Feature Matrix */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div className="p-3.5 bg-light-bg rounded-xl border border-border-subtle space-y-1">
+                    <span className="text-[10px] font-bold text-teal uppercase">Barrier Protection</span>
+                    <p className="text-xs font-extrabold text-navy">7-Layer Barrier Film</p>
+                    <p className="text-[11px] text-muted-text">Aluminium + plastic layers against oxygen</p>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {PRODUCTS.map((product, idx) => (
-                      <button
-                        key={product.id}
-                        onClick={() => setCurrentIndex(idx)}
-                        className={`text-xs px-3 py-1.5 rounded-lg font-bold transition-all duration-200 border ${idx === currentIndex
-                          ? "bg-navy text-white border-navy shadow-xs scale-105"
-                          : "bg-white text-body-text border-border-subtle hover:border-teal"
-                          }`}
-                      >
-                        {product.name}
-                      </button>
-                    ))}
+                  <div className="p-3.5 bg-light-bg rounded-xl border border-border-subtle space-y-1">
+                    <span className="text-[10px] font-bold text-primary uppercase">Volume Formats</span>
+                    <p className="text-xs font-extrabold text-navy">125 ml &amp; 200 ml</p>
+                    <p className="text-[11px] text-muted-text">Hygienic single-use ready packs</p>
+                  </div>
+                  <div className="p-3.5 bg-light-bg rounded-xl border border-border-subtle space-y-1">
+                    <span className="text-[10px] font-bold text-success uppercase">Storage Spec</span>
+                    <p className="text-xs font-extrabold text-navy">Store below 25°C</p>
+                    <p className="text-[11px] text-muted-text">Protect from light &bull; Long stability</p>
                   </div>
                 </div>
 
-                {/* Technical Specification Table */}
-                <div className="border border-border-subtle rounded-xl overflow-hidden text-xs md:text-sm">
-                  <div className="grid grid-cols-2 bg-light-bg px-4 py-2.5 font-bold text-navy border-b border-border-subtle">
-                    <span>Parameter Specification</span>
-                    <span>Compliance Metric</span>
-                  </div>
-                  <div className="grid grid-cols-2 px-4 py-2.5 bg-white border-b border-border-subtle">
-                    <span className="text-muted-text">Dosage Form</span>
-                    <span className="font-semibold text-navy">Aseptic Liquid Ready-to-Drink</span>
-                  </div>
-                  <div className="grid grid-cols-2 px-4 py-2.5 bg-light-bg border-b border-border-subtle">
-                    <span className="text-muted-text">Active Selection</span>
-                    <span
-                      className="font-extrabold"
-                      style={{ color: currentProduct.color }}
-                    >
-                      {currentProduct.name} ({currentIndex + 1} of 5)
+                {/* Technical Formula Table */}
+                <div className="border border-border-subtle rounded-xl overflow-hidden text-xs shadow-2xs">
+                  <div className="bg-navy text-white px-4 py-2.5 font-bold flex justify-between items-center">
+                    <span className="font-heading">Technical Formula (Per Liter)</span>
+                    <span className="text-teal font-extrabold text-[11px] uppercase tracking-wide">
+                      TOTAL OSMOLARITY: 75 MMOL/L
                     </span>
                   </div>
-                  <div className="grid grid-cols-2 px-4 py-2.5 bg-white border-b border-border-subtle">
-                    <span className="text-muted-text">Packaging Spec</span>
-                    <span className="font-semibold text-navy">200ml Multi-layer Barrier Pack (BFS / Cartons)</span>
-                  </div>
-                  <div className="grid grid-cols-2 px-4 py-2.5 bg-light-bg">
-                    <span className="text-muted-text">Regulatory Basis</span>
-                    <span className="font-semibold text-navy">WHO Recommended Osmolarity Formula</span>
+                  <div className="divide-y divide-border-subtle bg-white">
+                    {TECHNICAL_FORMULA.map((item, idx) => (
+                      <div key={idx} className="grid grid-cols-12 px-4 py-2 hover:bg-light-bg transition-colors">
+                        <span className="col-span-5 font-bold text-navy">{item.component}</span>
+                        <span className="col-span-3 text-teal font-semibold">{item.concentration}</span>
+                        <span className="col-span-2 text-muted-text font-medium">{item.weight}</span>
+                        <span className="col-span-2 text-right font-medium text-navy">{item.purpose}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <Link
+                  href="/products"
+                  className="btn-primary text-xs py-3 px-5 inline-flex items-center justify-center gap-2 cursor-pointer shadow-clinical"
+                >
+                  <span className="material-symbols-outlined text-base">science</span>
+                  <span>View All 8 Flavors &amp; Full Packaging Specs</span>
+                </Link>
                 <Link
                   href="/contact#rfq-form"
-                  className="btn-primary text-sm py-3 px-5 inline-flex items-center gap-2"
+                  className="btn-secondary text-xs py-3 px-5 inline-flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <span className="material-symbols-outlined text-teal text-lg">receipt_long</span>
-                  <span>Request ORS Formulation Batch Quote</span>
+                  <span>Request Private Label Sample Batch</span>
                 </Link>
               </div>
             </div>
@@ -241,5 +295,3 @@ export default function ProductSpotlight() {
     </section>
   );
 }
-
-
